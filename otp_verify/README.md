@@ -24,14 +24,14 @@ composer require drupal/otp_verify
 
 - go to enable module.
 
-![enable](/enable-module.png)
+![enable](enable-module.png)
 
 - go to config for create new key `admin/config/system/keys/add`
   - Twilio Account SID
   - Twilio Auth Token
 - go to config path `admin/config/otp_verify` to set sms configuration
 
-![sms-config](/sms-config.png)
+![sms-config](sms-config.png)
 
 ## Using
 
