@@ -1,0 +1,16 @@
+otp_verify.settings:
+  type: config_object
+  label: "Twilio SMS Settings"
+  mapping:
+    sender_id:
+      type: string
+      label: "Sender ID"
+    token:
+      type: string
+      label: "Auth Token"
+    provider_number:
+      type: string
+      label: "Provider Phone Number"
+    verification_message_text:
+      type: string
+      label: "Verification Message Text"

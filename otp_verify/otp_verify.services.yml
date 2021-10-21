@@ -1,0 +1,9 @@
+services:
+  otp_verify.verification_code:
+    class: Drupal\otp_verify\Service\VerificationCodeService
+    arguments: ["@database"]
+  otp_verify.gateway:
+    class: Drupal\otp_verify\Service\SmsGatewayService
+    arguments: ["@otp_verify.twilio"]
+  otp_verify.twilio:
+    class: Drupal\otp_verify\Service\SMSGateways\TwilioGateway

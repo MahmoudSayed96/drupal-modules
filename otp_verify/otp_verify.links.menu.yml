@@ -1,0 +1,6 @@
+otp_verify.settings:
+  title: "SMS Gateway Settings"
+  description: "SMS Gateway settings"
+  parent: system.admin_config_services
+  route_name: otp_verify.settings
+  weight: 100

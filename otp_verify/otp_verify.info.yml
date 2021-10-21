@@ -1,0 +1,9 @@
+name: OTP Verify
+description: This module using for make otp verify by send sms message.
+type: module
+core: 8.x
+core_version_requirement: ^8 || ^9
+package: Custom
+configure: otp_verify.settings
+dependencies:
+  - key:key

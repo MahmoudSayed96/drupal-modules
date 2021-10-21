@@ -1,0 +1,73 @@
+<?php
+
+/**
+ * @file
+ * Contains hooks that run when module installed and uninstalled.
+ */
+
+use Drupal\Core\Database\Database;
+
+/**
+ * Implements hook_schema().
+ */
+function otp_verify_schema() {
+  $schema['otp_verify_data'] = [
+    'description' => 'Stores module data as key/value pairs per user.',
+    'fields' => [
+      'id' => [
+        'description' => 'The {otp_verify_data}.id this record affects.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'user_id' => [
+        'description' => 'The {users}.uid this record affects.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'code' => [
+        'description' => 'The identifier of the otp code.',
+        'type' => 'varchar',
+        'length' => 6,
+        'not null' => TRUE,
+        'default' => '',
+      ],
+      'verified' => [
+        'description' => 'The identifier of the user is verified.{1} is verified',
+        'type' => 'int',
+        'length' => 1,
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ],
+    'primary key' => ['id'],
+    'indexes' => [
+      'user_id' => ['user_id'],
+    ],
+    // For documentation purposes only; foreign keys are not created in the
+    // Database.
+    'foreign keys' => [
+      'sms_otp_data' => [
+        'table' => 'users',
+        'columns' => [
+          'user_id' => 'user_id',
+        ],
+      ],
+    ],
+  ];
+
+  return $schema;
+}
+
+/**
+ * Implements hook_uninstall().
+ */
+function otp_verify_uninstall() {
+  // Drop table from database.
+  $table = 'otp_verify_data';
+  $schema = Database::getConnection()->schema();
+  if ($schema->tableExists($table)) {
+    $schema->dropTable($table);
+  }
+}
